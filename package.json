@@ -2,28 +2,22 @@
   "name": "cra-modular-redux-auth0-saga",
   "version": "0.1.0",
   "private": true,
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "postinstall": "node utils/postinstall"
-  },
-  "author": "Bartek Kus <bartekus@gmail.com> (https://bartekus.com/)",
-  "keywords": [
-    "cra",
-    "modular",
-    "redux",
-    "auth0",
-    "saga"
-  ],
   "license": "MIT",
+  "author": "Bartek Kus <bartekus@gmail.com> (https://bartekus.com/)",
   "repository": {
     "type": "git",
     "url": "https://github.com/bartekus/cra-modular-redux-auth0-saga.git"
   },
   "bugs": {
     "url": "https://github.com/bartekus/cra-modular-redux-auth0-saga/issues"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "format": "prettier --write 'src/**/*.{ts,tsx,json}'",
+    "postinstall": "node utils/postinstall"
   },
   "dependencies": {
     "@material-ui/core": "4.9.8",
@@ -40,6 +34,22 @@
     "react-scripts": "3.4.1",
     "typescript": "~3.7.2"
   },
+  "devDependencies": {
+    "husky": "4.2.3",
+    "lint-staged": "10.1.1",
+    "prettier": "2.0.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{ts,tsx,json}": [
+      "npm run format",
+      "git add"
+    ]
+  },
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -54,5 +64,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "keywords": [
+    "cra",
+    "modular",
+    "redux",
+    "auth0",
+    "saga"
+  ]
 }
