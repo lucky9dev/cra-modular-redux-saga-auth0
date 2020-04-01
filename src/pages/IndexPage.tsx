@@ -1,19 +1,14 @@
 import React from 'react';
-import Box from '@material-ui/core/Box';
-import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
+import { Redirect } from 'react-router';
+import { useSelector } from 'react-redux';
 
-import Copyright from '../components/Copyright';
+import AuthService from '../services/auth';
 
 export default function IndexPage() {
-  return (
-    <Container maxWidth="sm">
-      <Box my={4}>
-        <Typography variant="h4" component="h1" gutterBottom>
-          IndexPage
-        </Typography>
-        <Copyright />
-      </Box>
-    </Container>
-  );
+  // @ts-ignore
+  const auth0 = useSelector((store) => store.auth0);
+
+  if (auth0.authenticated) return <Redirect to="/dashboard" />;
+  // @ts-ignore
+  return <div>{AuthService.signIn()}</div>;
 }
